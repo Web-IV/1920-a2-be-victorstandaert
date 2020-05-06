@@ -24,7 +24,7 @@ namespace MetingApi.Controllers
         }
 
         [HttpGet]     
-        public IEnumerable<Meting> GetMetingen(string resultaatVraag = null)
+        public IEnumerable<Meting> GetMeting(string resultaatVraag = null) //return op een vraag OF return alles wanneer niks meegegeven
         {
             if (string.IsNullOrEmpty(resultaatVraag))
                 return _metingRepository.GetAll();
@@ -44,7 +44,7 @@ namespace MetingApi.Controllers
         {
             Meting metingToCreate = new Meting() { };
             foreach (var i in meting.Resultaten)
-                metingToCreate.AddResultaat(new Resultaat(i.Type, i.Amount));
+                metingToCreate.AddResultaat(new Resultaat(i.Vraag, i.Amount));
             _metingRepository.Add(metingToCreate);
             _metingRepository.SaveChanges();
 
@@ -96,7 +96,7 @@ namespace MetingApi.Controllers
             {
                 return NotFound();
             }
-            var resultaatToCreate = new Resultaat(resultaat.Type, resultaat.Amount);
+            var resultaatToCreate = new Resultaat(resultaat.Vraag, resultaat.Amount);
             meting.AddResultaat(resultaatToCreate);
             _metingRepository.SaveChanges();
             return CreatedAtAction("Getresultaat", new { id = meting.Id, resultaatId = resultaatToCreate.Id }, resultaatToCreate);

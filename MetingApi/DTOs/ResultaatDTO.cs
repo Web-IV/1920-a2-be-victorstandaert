@@ -5,7 +5,7 @@ namespace MetingApi.DTOs
     public class ResultaatDTO
     {
         [Required]
-        public string Type { get; set; }
+        public string Vraag { get; set; }
 
         public double? Amount { get; set; }
     }

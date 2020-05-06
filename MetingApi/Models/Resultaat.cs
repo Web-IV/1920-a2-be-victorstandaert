@@ -1,4 +1,6 @@
 using Project.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace MetingApi.Models
 {
@@ -10,6 +12,7 @@ namespace MetingApi.Models
         public string Vraag { get; set; }
 
         public double? Amount { get; set; }
+
         #endregion
 
         #region Constructors

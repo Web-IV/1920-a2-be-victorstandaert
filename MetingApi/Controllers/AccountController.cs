@@ -37,7 +37,7 @@ namespace Project.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost] //login
         public async Task<ActionResult<String>> CreateToken(LoginDTO model)
         {
             var user = await _userManager.FindByNameAsync(model.Email);
@@ -84,7 +84,7 @@ namespace Project.Controllers
         }
 
         [HttpGet("Metingen")] 
-        public IEnumerable<Meting> GetMetingen() 
+        public IEnumerable<Meting> GetMetingen() //geef metingen van account
         {
             User user = _userRepository.GetBy(User.Identity.Name); 
             return user.Metingen; 

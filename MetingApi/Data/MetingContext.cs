@@ -40,9 +40,9 @@ namespace MetingApi.Data
 
             builder.Entity<Resultaat>().HasData(
                     //Shadow property can be used for the foreign key, in combination with anaonymous objects
-                    new { Id = 1, Vraag = "Vraag1", Amount = (double?)0.75, MetingId = 1 },
-                    new { Id = 2, Vraag = "Vraag2", Amount = (double?)500, MetingId = 1 },
-                    new { Id = 3, Vraag = "Vraag3", Amount = (double?)2, MetingId = 1 }
+                    new { Id = 1, Vraag = "Werk", Amount = (double?)0.75, MetingId = 1 },
+                    new { Id = 2, Vraag = "Familie", Amount = (double?)0.15, MetingId = 1 },
+                    new { Id = 3, Vraag = "Gezondheid", Amount = (double?)0.10, MetingId = 1 }
                  );
         }
 

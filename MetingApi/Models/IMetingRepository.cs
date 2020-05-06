@@ -7,7 +7,7 @@ namespace MetingApi.Models
         Meting GetBy(int id);
         bool TryGetMeting(int id, out Meting meting);
         IEnumerable<Meting> GetAll();
-        IEnumerable<Meting> GetBy(string resultaatType = null);
+        IEnumerable<Meting> GetBy(string resultaatVraag = null);
         void Add(Meting meting);
         void Delete(Meting meting);
         void Update(Meting meting);
