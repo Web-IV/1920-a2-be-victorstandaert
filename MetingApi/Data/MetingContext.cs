@@ -35,14 +35,14 @@ namespace MetingApi.Data
             //Another way to seed the database
             builder.Entity<Meting>().HasData(
                  new Meting { Id = 1, Created = DateTime.Now},
-                 new Meting { Id = 2, Created = DateTime.Now}
+                 new Meting { Id = 2, Created = Convert.ToDateTime("2020-03-26T08:31:19.0000000") }
   );
 
             builder.Entity<Resultaat>().HasData(
                     //Shadow property can be used for the foreign key, in combination with anaonymous objects
-                    new { Id = 1, Vraag = "Werk", Amount = (double?)0.75, MetingId = 1 },
-                    new { Id = 2, Vraag = "Familie", Amount = (double?)0.15, MetingId = 1 },
-                    new { Id = 3, Vraag = "Gezondheid", Amount = (double?)0.10, MetingId = 1 }
+                    new { Id = 1, Vraag = "Werk", Amount = (double?)75, MetingId = 1 },
+                    new { Id = 2, Vraag = "Familie", Amount = (double?)15, MetingId = 1 },
+                    new { Id = 3, Vraag = "Gezondheid", Amount = (double?)10, MetingId = 1 }
                  );
         }
 

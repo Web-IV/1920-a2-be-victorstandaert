@@ -62,7 +62,7 @@ namespace Project.Controllers
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(null, null, claims, expires: DateTime.Now.AddMinutes(30), signingCredentials: creds);
+            var token = new JwtSecurityToken(null, null, claims, expires: DateTime.Now.AddMinutes(90), signingCredentials: creds);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
