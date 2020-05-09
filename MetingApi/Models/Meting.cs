@@ -17,6 +17,8 @@ namespace MetingApi.Models
         public User User { get; set; }
 
         public ICollection<Resultaat> Resultaten { get; set; }
+
+        public double? MetingResultaat { get; set; } 
         #endregion
 
         #region Constructors
