@@ -1,4 +1,5 @@
 ﻿using MetingApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,8 @@ namespace Project.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Produces("application/json")]
     public class AccountController : ControllerBase
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -83,12 +86,14 @@ namespace Project.Controllers
             return BadRequest();
         }
 
-        [HttpGet("Metingen")] 
-        public IEnumerable<Meting> GetMetingen() //geef metingen van account
+        [HttpGet()]
+        public ActionResult<UserDTO> GetCurrentUser()
         {
-            User user = _userRepository.GetBy(User.Identity.Name); 
-            return user.Metingen; 
+            User user = _userRepository.GetBy(User.Identity.Name);
+            return new UserDTO(user);
         }
 
+
+        
     }
 }

@@ -18,7 +18,7 @@ namespace Project.Models
 
         public string Email { get; set; }
 
-        public ICollection<Meting> Metingen { get; private set; }
+        public ICollection<Meting> Metingen { get; set; }
         #endregion
 
         #region Constructors

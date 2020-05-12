@@ -21,7 +21,7 @@ namespace Project.Data.Repositories
 
         public User GetBy(string email)
         {
-            return _users.Include(c => c.Metingen).ThenInclude(f => f.Resultaten).SingleOrDefault(c => c.Email == email);
+            return _users.Include(c => c.Metingen).ThenInclude(u => u.Resultaten).SingleOrDefault(c => c.Email == email);
         }
 
         public void Add(User user)

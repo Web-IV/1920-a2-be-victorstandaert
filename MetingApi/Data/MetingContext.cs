@@ -31,6 +31,8 @@ namespace MetingApi.Data
             builder.Entity<User>().Property(c => c.LastName).IsRequired().HasMaxLength(50);
             builder.Entity<User>().Property(c => c.FirstName).IsRequired().HasMaxLength(50);
             builder.Entity<User>().Property(c => c.Email).IsRequired().HasMaxLength(100);
+            builder.Entity<User>().Ignore(c => c.Metingen);
+
 
             //Another way to seed the database
             builder.Entity<Meting>().HasData(

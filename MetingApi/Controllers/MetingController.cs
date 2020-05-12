@@ -6,21 +6,22 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Net;
+using Project.Models;
 
 namespace MetingApi.Controllers
 {
     [ApiConventionType(typeof(DefaultApiConventions))]
-    [Produces("application/json")]
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class MetingController : ControllerBase
     {
         private readonly IMetingRepository _metingRepository;
+        private readonly IUserRepository _userRepository;
 
-        public MetingController(IMetingRepository context)
+        public MetingController(IMetingRepository context, IUserRepository userRepository)
         {
             _metingRepository = context;
+            _userRepository = userRepository;
         }
 
         [HttpGet]     
@@ -101,6 +102,13 @@ namespace MetingApi.Controllers
             meting.AddResultaat(resultaatToCreate);
             _metingRepository.SaveChanges();
             return CreatedAtAction("Getresultaat", new { id = meting.Id, resultaatId = resultaatToCreate.Id }, resultaatToCreate);
+        }
+
+        [HttpGet("metingenUser")]
+        public IEnumerable<Meting> GetMetingen() //geef metingen van account
+        {
+            User user = _userRepository.GetBy(User.Identity.Name);
+            return user.Metingen;
         }
     }
 }
