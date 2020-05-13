@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Net;
 using Project.Models;
+using Project.DTOs;
 
 namespace MetingApi.Controllers
 {
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class MetingController : ControllerBase
     {
         private readonly IMetingRepository _metingRepository;
@@ -24,7 +27,8 @@ namespace MetingApi.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpGet]     
+        [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<Meting> GetMeting(string resultaatVraag = null) //return op een vraag OF return alles wanneer niks meegegeven
         {
             if (string.IsNullOrEmpty(resultaatVraag))
@@ -104,11 +108,19 @@ namespace MetingApi.Controllers
             return CreatedAtAction("Getresultaat", new { id = meting.Id, resultaatId = resultaatToCreate.Id }, resultaatToCreate);
         }
 
+        /*[HttpGet()]
+        public ActionResult<UserDTO> GetCurrentUser()
+        {
+            User user = _userRepository.GetBy(User.Identity.Name);
+            return new UserDTO(user);
+        }*/
+
         [HttpGet("metingenUser")]
         public IEnumerable<Meting> GetMetingen() //geef metingen van account
         {
             User user = _userRepository.GetBy(User.Identity.Name);
             return user.Metingen;
         }
+
     }
 }

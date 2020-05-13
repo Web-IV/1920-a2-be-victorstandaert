@@ -20,8 +20,6 @@ namespace Project.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [ApiConventionType(typeof(DefaultApiConventions))]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Produces("application/json")]
     public class AccountController : ControllerBase
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -86,14 +84,13 @@ namespace Project.Controllers
             return BadRequest();
         }
 
-        [HttpGet()]
-        public ActionResult<UserDTO> GetCurrentUser()
+        [AllowAnonymous]
+        [HttpGet("checkusername")]
+        public async Task<ActionResult<Boolean>> CheckAvailableUserName(string email)
         {
-            User user = _userRepository.GetBy(User.Identity.Name);
-            return new UserDTO(user);
+            var user = await _userManager.FindByNameAsync(email);
+            return user == null;
         }
 
-
-        
     }
 }
