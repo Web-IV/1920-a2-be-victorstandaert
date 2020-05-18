@@ -35,8 +35,8 @@ namespace MetingApi.Data
 
             //Another way to seed the database
             builder.Entity<Meting>().HasData(
-                 new Meting { Id = 1, Created = DateTime.Now},
-                 new Meting { Id = 2, Created = Convert.ToDateTime("2020-03-26T08:31:19.0000000") }
+                 new Meting { Id = 1, Created = DateTime.Now, MetingResultaat = 100},
+                 new Meting { Id = 2, Created = Convert.ToDateTime("2020-03-26T08:31:19.0000000") , MetingResultaat = 50}
   );
 
             builder.Entity<Resultaat>().HasData(
