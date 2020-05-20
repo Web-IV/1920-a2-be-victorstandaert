@@ -51,6 +51,7 @@ namespace MetingApi.Controllers
             foreach (var i in meting.Resultaten)
                 metingToCreate.AddResultaat(new Resultaat(i.Vraag, i.Amount));
             metingToCreate.MetingResultaat = meting.MetingResultaat;
+            metingToCreate.User = _userRepository.GetBy(User.Identity.Name);
             _metingRepository.Add(metingToCreate);
             _metingRepository.SaveChanges();
 

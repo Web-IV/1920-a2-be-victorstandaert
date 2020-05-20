@@ -31,7 +31,7 @@ namespace Project.Models
         #region Methods
         public void AddMeting(Meting meting)
         {
-            Metingen.Add(new Meting() { Id = meting.Id, Created = DateTime.Now, User = this});
+            Metingen.Add(new Meting() { Id = meting.Id, Created = DateTime.Now, User = this, MetingResultaat = meting.MetingResultaat});
         }
         #endregion
     }
