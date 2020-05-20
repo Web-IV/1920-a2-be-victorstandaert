@@ -30,7 +30,8 @@ namespace MetingApi.Data
                 await CreateUser(user1.Email, "P@ssword1111");
 
                 User user2 = new User { Email = "student@hogent.be", FirstName = "Student", LastName = "Hogent" };
-                user2.AddMeting(new Meting { Created = DateTime.Now, User = user2, MetingResultaat = -5 }); //meting van account
+                user2.AddMeting(new Meting { User = user2, MetingResultaat = -5 }); //meting van account
+                user2.AddMeting(new Meting { User = user2, MetingResultaat = 55 }); //meting van account
                 _dbContext.users.Add(user2);
                 await CreateUser(user2.Email, "P@ssword1111");
 
